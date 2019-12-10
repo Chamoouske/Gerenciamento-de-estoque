@@ -24,6 +24,7 @@ function createDB(tx){
     tx.executeSql('CREATE TABLE IF NOT EXISTS Produtos (id INTEGER PRIMARY KEY, nome VARCHAR(50), qtd INTEGER, preco FLOAT)');
 }
 
+// Exibe a tela para inserir produto
 function exibirTela(x){
     if(x == 0){
         $("#tela_principal").hide(); // Esconde a tela princiapl
@@ -35,6 +36,7 @@ function exibirTela(x){
     }
 }
 
+// Fecha a tela de inserir produto e retorna a tela principal
 function fecharTela(x){
     if(x == 0){
         $("#tela_principal").show(); // Mostra a tela princiapl

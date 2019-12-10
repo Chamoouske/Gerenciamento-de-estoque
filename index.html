@@ -23,16 +23,18 @@
         app.initialize();
     </script>
 
-    <h1>HDMIZera</h1>
     <div class="container" id="tela_principal" align="center">
-        <input type="button" class="btn btn-lg btn-primary form-control" value="Inserir Produto" onclick="exibirTela(0)"><!--Exibe a tela p/ inserir produtos-->
-        <input type="button" class="btn btn-lg btn-primary form-control" value="Listar Produtos" onclick="exibirTela(1)"><!--Exibe a tela de listagem de produtos-->
-        <input type="button" class="btn btn-lg btn-primary form-control" value="Carrinho de comprs" onclick="exibirTela(2)"><!--Exibe a tela do carrinho de compras-->
+            <img src="img/logo.png" width=40% height=30%>
+        <!-- Adição de um id para cada botão, estilizando-os no CSS -->
+        <input type="button" id="bt1" class="btn btn-lg btn-primary form-control" value="Inserir Produto" onclick="exibirTela(0)"> <!--Exibe a tela p/ inserir produtos-->
+        <input type="button" id="bt2" class="btn btn-lg btn-primary form-control" value="Listar Produtos" onclick="exibirTela(1)"> <!--Exibe a tela de listagem de produtos-->
+        <input type="button" id="bt3" class="btn btn-lg btn-primary form-control" value="Carrinho de Compras" onclick="exibirTela(2)"> <!--Exibe a tela do carrinho de compras-->
     </div>
 
     <div class="container" id="tela_inserir_produto" align="center" hidden>
+        <img src="img/logo.png" width=40% height=30%>
         <!-- Tela de cadastro de produtos -->
-        <input type="button" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="fecharTela(0)">
+        <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="fecharTela(0)">
         <!--0 fecha a tela de cadastro de produto-->
         <h3>Inserir produto</h3>
         <div class="row">
@@ -47,7 +49,7 @@
             <h4>Preço:</h4>
             <input type="text" id="nome_produto">
         </div>
-        <input type="button" class="btn btn-lg btn-primary form-control" value="Inserir" onclick="inserirProduto()">
+        <input type="button" id="bt4" class="btn btn-lg btn-primary form-control" value="Inserir" onclick="inserirProduto()">
     </div>
 </body>
 
