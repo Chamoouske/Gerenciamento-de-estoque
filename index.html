@@ -15,7 +15,6 @@
 </head>
 
 <body>
-    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/estoque.js"></script>
@@ -23,33 +22,54 @@
         app.initialize();
     </script>
 
-    <div class="container" id="tela_principal" align="center">
-            <img src="img/logo.png" width=40% height=30%>
-        <!-- Adição de um id para cada botão, estilizando-os no CSS -->
-        <input type="button" id="bt1" class="btn btn-lg btn-primary form-control" value="Inserir Produto" onclick="exibirTela(0)"> <!--Exibe a tela p/ inserir produtos-->
-        <input type="button" id="bt2" class="btn btn-lg btn-primary form-control" value="Listar Produtos" onclick="exibirTela(1)"> <!--Exibe a tela de listagem de produtos-->
-        <input type="button" id="bt3" class="btn btn-lg btn-primary form-control" value="Carrinho de Compras" onclick="exibirTela(2)"> <!--Exibe a tela do carrinho de compras-->
-    </div>
-
-    <div class="container" id="tela_inserir_produto" align="center" hidden>
+    <!-- Div para exibir a logo em todas as telas-->
+    <div class="container" align="center">
         <img src="img/logo.png" width=40% height=30%>
+
+        <div class="container" id="tela_principal" align="center">
+            <!-- Adição de um id para cada botão, estilizando-os no CSS -->
+            <input type="button" id="bt1" class="btn btn-lg btn-primary form-control" value="Inserir Produto"
+                onclick="exibirTela(0)">
+            <!--Exibe a tela p/ inserir produtos-->
+            <input type="button" id="bt2" class="btn btn-lg btn-primary form-control" value="Listar Produtos"
+                onclick="exibirTela(1)">
+            <!--Exibe a tela de listagem de produtos-->
+            <input type="button" id="bt3" class="btn btn-lg btn-primary form-control" value="Carrinho de Compras"
+                onclick="exibirTela(2)">
+            <!--Exibe a tela do carrinho de compras-->
+        </div>
+
         <!-- Tela de cadastro de produtos -->
-        <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar" onclick="fecharTela(0)">
-        <!--0 fecha a tela de cadastro de produto-->
-        <h3>Inserir produto</h3>
-        <div class="row">
-            <h4>Nome:</h4>
-            <input type="text" id="nome_produto">
+        <div id="tela_inserir_produto" hidden>
+            <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
+                onclick="fecharTela(0)">
+            <!--0 fecha a tela de cadastro de produto-->
+            <h3>Inserir produto</h3>
+            <div class="row">
+                <h4>Nome:</h4>
+                <input type="text" id="nome_produto">
+            </div>
+            <div class="row">
+                <h4>Quantidade em estoque:</h4>
+                <input type="text" id="qtd_estoque">
+            </div>
+            <div class="row">
+                <h4>Preço:</h4>
+                <input type="text" id="preco_produto">
+            </div>
+            <input type="button" id="bt4" class="btn btn-lg btn-primary form-control" value="Inserir"
+                onclick="inserirProduto()">
         </div>
-        <div class="row">
-            <h4>Quantidade em estoque:</h4>
-            <input type="text" id="qtd_estoque">
+
+        <div id="tela_listagem_produtos" hidden>
+                <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
+                    onclick="fecharTela(1)">
+            </div>
+
+        <div id="tela_carrinho" hidden>
+            <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
+                onclick="fecharTela(2)">
         </div>
-        <div class="row">
-            <h4>Preço:</h4>
-            <input type="text" id="nome_produto">
-        </div>
-        <input type="button" id="bt4" class="btn btn-lg btn-primary form-control" value="Inserir" onclick="inserirProduto()">
     </div>
 </body>
 
