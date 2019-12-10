@@ -23,3 +23,25 @@ function successDB(){}
 function createDB(tx){
     tx.executeSql('CREATE TABLE IF NOT EXISTS Produtos (id INTEGER PRIMARY KEY, nome VARCHAR(50), qtd INTEGER, preco FLOAT)');
 }
+
+function exibirTela(x){
+    if(x == 0){
+        $("#tela_principal").hide(); // Esconde a tela princiapl
+        $("#tela_inserir_produto").show(); // Mostra a tela de insercao de produto
+    }else if(x == 1){
+        $("#tela_principal").hide(); // Esconde a tela princiapl
+    }else if(x == 2){
+        $("#tela_principal").hide(); // Esconde a tela princiapl
+    }
+}
+
+function fecharTela(x){
+    if(x == 0){
+        $("#tela_principal").show(); // Mostra a tela princiapl
+        $("#tela_inserir_produto").hide(); // Esconde a tela de insercao de produto
+    }else if(x == 1){
+        $("#tela_principal").show(); // Mostra a tela princiapl
+    }else if(x == 2){
+        $("#tela_principal").show(); // Mostra a tela princiapl
+    }
+}
