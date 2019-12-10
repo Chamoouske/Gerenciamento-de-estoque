@@ -62,13 +62,40 @@
         </div>
 
         <div id="tela_listagem_produtos" hidden>
-                <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
-                    onclick="fecharTela(1)">
-            </div>
+                <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"onclick="fecharTela(1)">
+
+                    <div clas="row">
+                        <div class="col-md-12">
+                        
+                            <table class="table">
+                            
+                                <thead>
+                                    <tr>
+                                        <th>NOME</th>
+                                        <th>QUANTIDADE EM ESTOQUE</th>
+                                        <th>VALOR UNITÁRIO</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="produtos_listagem">
+                                    <!-- Aqui será exibido a listagem -->
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                    </div>
+        </div>
+        <script>
+            listagemView();
+        </script>
 
         <div id="tela_carrinho" hidden>
             <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
                 onclick="fecharTela(2)">
+                
+        </div>
+
+        <div id="#tela_qtd_produto" hidden>
+            <!-- AINDA FALTA EDITAR-->
         </div>
     </div>
 </body>

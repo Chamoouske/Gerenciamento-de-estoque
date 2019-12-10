@@ -122,8 +122,13 @@ h1 {
     -webkit-animation: fade 3000ms infinite;
 }
 
-#bt1, #bt5{
+#bt1{
     margin-top:20px;
+}
+
+#bt5{
+    margin-top:20px;
+    margin-bottom:10px;
 }
 
 #bt2, #bt3 { 

@@ -16,6 +16,16 @@ function errorDB(err){
     alert("Erro: " + err);
 }
 
+// Prepara para ler os registros da tabela Produtos
+function listagemView(){
+	db.transaction(viewBD, errorDB, successDB);
+}
+
+// Função para exibir os produtos
+function viewBD(tx){
+    tx.executeSql('SELECT * FROM Produtos', [], listarProdutos, errorDB);
+}
+
 // Executa se criou o BD com sucesso
 function successDB(){}
 
@@ -35,6 +45,7 @@ function exibirTela(x){
     if(x == 1){
         $("#tela_principal").hide(); // Esconde a tela princiapl
         $("#tela_listagem_produtos").show(); // Mostra a tela de listagem de produtos
+        listagemView();
         return;
     }
     if(x == 2){
@@ -42,6 +53,12 @@ function exibirTela(x){
         $("#tela_carrinho").show(); // Mostra a tela do carrinho de compras
         return;
     }
+
+    if(x == 3){
+        $("#tela_listagem_produtos").hide(); // Esconde a tela listagem produts
+        $("#tela_qtd_produto").show();
+    }
+
 }
 
 // Fecha a tela de inserir produto e retorna a tela principal
@@ -81,3 +98,19 @@ function estoque_inserirProduto_db(tx){
     alert( nome + " " + qtd + " " + preco);
     fecharTela(0);
 }
+
+// Lista os produtos cadastrados
+function listarProdutos(tx, results){
+	$("#produtos_listagem").empty();
+	var len = results.rows.length;
+	for(var i=0;i<len;i++){
+		$("#produtos_listagem").append
+		("<tr class='produto_item_lista'>" +
+		"<td><h3>" + results.rows.item(i).nome + "</h3></td>" +
+        "<td><h3>" + results.rows.item(i).qtd + "</h3></td>" +
+        "<td><h3>" + results.rows.item(i).preco + "</h3></td>" +
+        "<td><input type='button' class='btn btn-lg btn-primary' value='COMPRAR' onclick='exibirTela(3)'></td>"+
+        "</tr>");
+	}
+}
+
