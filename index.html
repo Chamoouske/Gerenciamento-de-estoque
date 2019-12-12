@@ -18,9 +18,6 @@
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/estoque.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-    </script>
 
     <!-- Div para exibir a logo em todas as telas-->
     <div class="container" align="center">
@@ -28,15 +25,18 @@
 
         <div class="container" id="tela_principal" align="center">
             <!-- Adição de um id para cada botão, estilizando-os no CSS -->
+
+            <!--Exibe a tela p/ inserir produtos-->
             <input type="button" id="bt1" class="btn btn-lg btn-primary form-control" value="Inserir Produto"
                 onclick="exibirTela(0)">
-            <!--Exibe a tela p/ inserir produtos-->
+
+            <!--Exibe a tela de listagem de produtos-->
             <input type="button" id="bt2" class="btn btn-lg btn-primary form-control" value="Listar Produtos"
                 onclick="exibirTela(1)">
-            <!--Exibe a tela de listagem de produtos-->
+
+            <!--Exibe a tela do carrinho de compras-->
             <input type="button" id="bt3" class="btn btn-lg btn-primary form-control" value="Carrinho de Compras"
                 onclick="exibirTela(2)">
-            <!--Exibe a tela do carrinho de compras-->
         </div>
 
         <!-- Tela de cadastro de produtos -->
@@ -61,6 +61,7 @@
                 onclick="inserirProduto()">
         </div>
 
+        <!-- Tela de listagem de produtos -->
         <div id="tela_listagem_produtos" hidden>
                 <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"onclick="fecharTela(1)">
 
@@ -72,7 +73,7 @@
                                 <thead>
                                     <tr>
                                         <th>NOME</th>
-                                        <th>QUANTIDADE EM ESTOQUE</th>
+                                        <th>QTD EM ESTOQUE</th>
                                         <th>VALOR UNITÁRIO</th>
                                     </tr>
                                 </thead>
@@ -88,14 +89,31 @@
             listagemView();
         </script>
 
+        <!-- Tela do carrinho de compras -->
         <div id="tela_carrinho" hidden>
             <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
                 onclick="fecharTela(2)">
                 
         </div>
 
-        <div id="#tela_qtd_produto" hidden>
-            <!-- AINDA FALTA EDITAR-->
+        <!-- tela de finalizar compra -->
+        <div id="tela_qtd_produto" hidden>
+                <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
+                onclick="fecharTela(3)">
+            <input type="hidden" id="id_deCompra">
+
+            <div class="row">
+                    <div class="col-md-12">
+                        <div id="mostrarProduto">
+                            <h5>Nome:</h5>
+                            <input type="text" id="nomeProduto" disabled><br>
+                            <h5>Qtd em Estoque:</h5>
+                            <input type="text" id="qtdProduto" disabled><br>
+                            <h5>Preco:</h5>
+                            <input type="text" id="precoProduto" disabled><br>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </body>
