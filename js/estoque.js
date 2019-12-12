@@ -32,7 +32,7 @@ function successDB() { }
 // Cria a tabela no BD
 function createDB(tx) {
     tx.executeSql('CREATE TABLE IF NOT EXISTS Produtos (id INTEGER PRIMARY KEY, nome VARCHAR(50), qtd INTEGER, preco FLOAT)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS Compras (id INTEGER PRIMARY KEY, produto VARCHAR(50), valorCompra FLOAT)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS Compras (id INTEGER PRIMARY KEY, produto VARCHAR(50), qtd INTEGER, valorCompra FLOAT)');
 }
 
 // Exibe a tela para inserir produto
@@ -62,26 +62,12 @@ function exibirTela(x) {
 }
 
 // Fecha a tela de inserir produto e retorna a tela principal
-function fecharTela(x) {
-    if (x == 0) {
-        $("#tela_principal").show(); // Mostra a tela princiapl
-        $("#tela_inserir_produto").hide(); // Esconde a tela de insercao de produto
-        return;
-    }
-    if (x == 1) {
-        $("#tela_principal").show(); // Mostra a tela princiapl
-        $("#tela_listagem_produtos").hide(); // Esconde a tela de listagem de produtos
-        return;
-    }
-    if (x == 2) {
-        $("#tela_principal").show(); // Mostra a tela princiapl
-        $("#tela_carrinho").hide(); // Esconde a tela do carrinho de compras
-        return;
-    }
-    if (x == 3) {
-        $("#tela_listagem_produtos").show(); // Mostra a tela princiapl
-        $("#tela_qtd_produto").hide(); // Esconde a tela do carrinho de compras
-    }
+function fecharTela() {
+    $("#tela_principal").show(); // Mostra a tela princiapl
+    $("#tela_inserir_produto").hide(); // Esconde a tela de insercao de produto
+    $("#tela_listagem_produtos").hide(); // Esconde a tela de listagem de produtos
+    $("#tela_carrinho").hide(); // Esconde a tela do carrinho de compras
+    $("#tela_qtd_produto").hide(); // Esconde a tela do carrinho de compras
 }
 
 // Prepara para inserir dados na tabela Produtos
@@ -99,6 +85,13 @@ function estoque_inserirProduto_db(tx) {
 
     tx.executeSql('INSERT INTO Produtos (nome, qtd, preco) VALUES ("' + nome + '", ' + qtd + ', ' + preco + ')');
     alert("Produto cadastrado com sucesso!");
+
+    // LIMPA OS CAMPOS
+    $("#nome_produto").val("");
+    $("#qtd_estoque").val("");
+    $("#preco_produto").val("");
+
+    parseFloat(preco);
     fecharTela(0);
 }
 
@@ -141,4 +134,60 @@ function finalizarCompra(tx, results){
     $("#nomeProduto").val(nome); // Manda a variavel nome para o campo de nome
     $("#qtdProduto").val(qtd); // Manda a variavel de qtd estoque para o campo referente
     $("#precoProduto").val(preco); // Manda a variavel preco para o campo referente
+}
+
+// Prepara para realizar a compra
+function comprarProduto(){
+    db.transaction(comprarProdutoDB, errorDB, successDB);
+}
+
+// Insere na tabela Compras o pedido do cliente e atualiza o estoque da tabela Produtos
+function comprarProdutoDB(tx){
+    var idProduto = parseInt($("#id_deCompra").val()) + 1; // usa o +1 pois o js trabalha vetor iniciando em 0, e o SQLite inicia os id em 1
+    var qtd = $("#qtdProduto").val();
+    var nome = $("#nomeProduto").val();
+    var pedido = $("#pedido").val();
+    var total = $("#precoProduto").val();
+    parseInt(idProduto);
+    parseInt(pedido);
+    parseFloat(total); 
+    total *= pedido; // Calcula o montante a pagar na compra 
+
+    tx.executeSql('INSERT INTO Compras (produto, qtd, valorCompra) VALUES ("' + nome + '", ' + pedido + ', ' + total + ')');
+    tx.executeSql('UPDATE Produtos SET qtd = ' + (qtd - pedido) + ' WHERE id =' + idProduto); // Atualiza o estoque do produto desejado
+    $("#pedido").val("");
+    alert("Produto adicionado ao carrinho de compras");
+    window.location.reload();
+}
+
+function carrinhoView(){
+    db.transaction(carrinhoCompras, errorDB, successDB);
+}
+
+function carrinhoCompras(tx){
+    tx.executeSql('SELECT * FROM Compras', [], carrinhoComprasDB, errorDB);
+}
+
+function carrinhoComprasDB(tx, results){
+    $("#carrinho_compras").empty();
+    var len = results.rows.length;
+    for (var i = 0; i < len; i++) {
+        $("#carrinho_compras").append
+            ("<tr class='produto_item_lista'>" +
+                "<td><h3>" + results.rows.item(i).produto + "</h3></td>" +
+                "<td><h3>" + results.rows.item(i).qtd + "</h3></td>" +
+                "<td><h3>" + results.rows.item(i).valorCompra + "</h3></td>" +
+            "</tr>");
+    }
+}
+
+function compraRealizada(){
+    db.transaction(compraRealizadaDB, errorDB, successDB);
+}
+
+function compraRealizadaDB(tx){
+    tx.executeSql('DELETE FROM Compras');
+    alert("Obrigado por comprar conosco!");
+
+    window.location.reload();
 }

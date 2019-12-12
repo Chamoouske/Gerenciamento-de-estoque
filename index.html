@@ -42,7 +42,7 @@
         <!-- Tela de cadastro de produtos -->
         <div id="tela_inserir_produto" hidden>
             <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
-                onclick="fecharTela(0)">
+                onclick="fecharTela()">
             <!--0 fecha a tela de cadastro de produto-->
             <h3>Inserir produto</h3>
             <div class="row">
@@ -63,57 +63,79 @@
 
         <!-- Tela de listagem de produtos -->
         <div id="tela_listagem_produtos" hidden>
-                <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"onclick="fecharTela(1)">
-
-                    <div clas="row">
-                        <div class="col-md-12">
-                        
-                            <table class="table">
-                            
-                                <thead>
-                                    <tr>
-                                        <th>NOME</th>
-                                        <th>QTD EM ESTOQUE</th>
-                                        <th>VALOR UNITÁRIO</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="produtos_listagem">
-                                    <!-- Aqui será exibido a listagem -->
-                                </tbody>
+                <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"onclick="fecharTela()">
+                <h3>Lista de Produtos</h3>
+                <div clas="row">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>NOME</th>
+                                    <th>QTD EM ESTOQUE</th>
+                                    <th>VALOR UNITÁRIO</th>
+                                </tr>
+                            </thead>
+                            <tbody id="produtos_listagem">
+                                <!-- Aqui será exibido a listagem -->
+                            </tbody>
                                 
-                            </table>
-                        </div>
+                        </table>
                     </div>
+                </div>
+            <script>
+                listagemView();
+            </script>
         </div>
-        <script>
-            listagemView();
-        </script>
+        
 
         <!-- Tela do carrinho de compras -->
         <div id="tela_carrinho" hidden>
             <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
-                onclick="fecharTela(2)">
-                
+            onclick="fecharTela()">
+            <h3>Carrinho de Compras</h3>
+            <div clas="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>NOME</th>
+                                <th>QTD EM ESTOQUE</th>
+                                <th>TOTAL A PAGAR</th>
+                            </tr>
+                        </thead>
+                        <tbody id="carrinho_compras">
+                            <!-- Aqui será exibido o carrinho de compras -->
+                        </tbody>
+                    </table>
+                    <input type="button" id="bt5" class="btn btn-primary form-control" value="Efetuar Compra" onclick="compraRealizada()">
+                </div>
+            </div>
+            <script>
+                carrinhoView();
+            </script>
         </div>
 
         <!-- tela de finalizar compra -->
         <div id="tela_qtd_produto" hidden>
-                <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
-                onclick="fecharTela(3)">
-            <input type="hidden" id="id_deCompra">
+            <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
+            onclick="fecharTela()">
+            <h3>Efetuar Compra</h3>
+            <input type="hidden" id="id_deCompra"> // ID recebido pelo JS na funcao prepFinalizarCompra
 
             <div class="row">
-                    <div class="col-md-12">
-                        <div id="mostrarProduto">
-                            <h5>Nome:</h5>
-                            <input type="text" id="nomeProduto" disabled><br>
-                            <h5>Qtd em Estoque:</h5>
-                            <input type="text" id="qtdProduto" disabled><br>
-                            <h5>Preco:</h5>
-                            <input type="text" id="precoProduto" disabled><br>
-                        </div>
+                <div class="col-md-12">
+                    <div id="mostrarProduto">
+                        <h5>Nome:</h5>
+                        <input type="text" id="nomeProduto" disabled><br>
+                        <h5>Qtd em Estoque:</h5>
+                        <input type="text" id="qtdProduto" disabled><br>
+                        <h5>Preco:</h5>
+                        <input type="text" id="precoProduto" disabled><br><br>
+                        <input type="text" id="pedido" value="1"><br>
+                        <input type="button" class="btn btn-primary form-control" id="bt5" value="Comprar" onclick="comprarProduto()">
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </body>
