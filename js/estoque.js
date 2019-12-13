@@ -51,6 +51,7 @@ function exibirTela(x) {
     if (x == 2) {
         $("#tela_principal").hide(); // Esconde a tela princiapl
         $("#tela_carrinho").show(); // Mostra a tela do carrinho de compras
+        carrinhoView();
         return;
     }
 
@@ -157,7 +158,7 @@ function comprarProdutoDB(tx){
     tx.executeSql('UPDATE Produtos SET qtd = ' + (qtd - pedido) + ' WHERE id =' + idProduto); // Atualiza o estoque do produto desejado
     $("#pedido").val("");
     alert("Produto adicionado ao carrinho de compras");
-    window.location.reload();
+    fecharTela();
 }
 
 function carrinhoView(){
@@ -189,5 +190,5 @@ function compraRealizadaDB(tx){
     tx.executeSql('DELETE FROM Compras');
     alert("Obrigado por comprar conosco!");
 
-    window.location.reload();
+    fecharTela();
 }
