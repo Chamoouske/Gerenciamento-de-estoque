@@ -31,8 +31,8 @@ function successDB() { }
 
 // Cria a tabela no BD
 function createDB(tx) {
-    tx.executeSql('CREATE TABLE IF NOT EXISTS Produtos (id INTEGER PRIMARY KEY, nome VARCHAR(50), qtd INTEGER, preco FLOAT)');
-    tx.executeSql('CREATE TABLE IF NOT EXISTS Compras (id INTEGER PRIMARY KEY, produto VARCHAR(50), qtd INTEGER, valorCompra FLOAT)');
+    tx.executeSql('CREATE TABLE IF NOT EXISTS Produtos (id INTEGER PRIMARY KEY, nome VARCHAR(50), qtd INTEGER, preco FLOAT)'); // cria a tabela se não existir 
+    tx.executeSql('CREATE TABLE IF NOT EXISTS Compras (id INTEGER PRIMARY KEY, produto VARCHAR(50), qtd INTEGER, valorCompra FLOAT)'); // cria a tabela se não existir
 }
 
 // Exibe a tela para inserir produto
@@ -60,6 +60,12 @@ function exibirTela(x) {
         $("#tela_qtd_produto").show(); // Exibe a tela de finalizar a compra
         return;
     }
+
+    if(x==4) {
+        $("#tela_principal").hide(); // Esconde a tela princiapl
+        $("#tela_desenvolvedores").show(); // Esconde a tela princiapl
+    }
+
 }
 
 // Fecha a tela de inserir produto e retorna a tela principal
@@ -69,6 +75,7 @@ function fecharTela() {
     $("#tela_listagem_produtos").hide(); // Esconde a tela de listagem de produtos
     $("#tela_carrinho").hide(); // Esconde a tela do carrinho de compras
     $("#tela_qtd_produto").hide(); // Esconde a tela do carrinho de compras
+    $("#tela_desenvolvedores").hide();  
 }
 
 // Prepara para inserir dados na tabela Produtos

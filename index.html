@@ -37,6 +37,10 @@
             <!--Exibe a tela do carrinho de compras-->
             <input type="button" id="bt3" class="btn btn-lg btn-primary form-control" value="Carrinho de Compras"
                 onclick="exibirTela(2)">
+            
+            <!-- Exibe a tela de desenvolvedores -->    
+            <input type="button" id="bt6" class="btn btn-lg btn-primary form-control" value="Desenvolvedores"
+                onclick="exibirTela(4)">    
         </div>
 
         <!-- Tela de cadastro de produtos -->
@@ -120,7 +124,7 @@
             <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
             onclick="fecharTela()">
             <h3>Efetuar Compra</h3>
-            <input type="hidden" id="id_deCompra"> // ID recebido pelo JS na funcao prepFinalizarCompra
+            <input type="hidden" id="id_deCompra"> <!-- ID recebido pelo JS na funcao prepFinalizarCompra -->
 
             <div class="row">
                 <div class="col-md-12">
@@ -136,6 +140,22 @@
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div id="tela_desenvolvedores" hidden>
+            <input type="button" id="bt9" class="btn btn-lg btn-primary form-control" value="Voltar"
+            onclick="fecharTela()">
+            <h3>DESENVOLVEDORES</h3>
+            <br>
+            <h4>Ajax Lima</h4>
+            <img src="img/Ajax.jpeg" width=20% height=10%>
+
+            <br>
+            <br>
+
+            <h4>Lucas Lobato</h4>
+            <img src="img/Lobato.jpeg" width=20% height=10%>
+
         </div>
     </div>
 </body>
