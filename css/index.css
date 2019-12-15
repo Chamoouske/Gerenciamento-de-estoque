@@ -10,7 +10,7 @@ body {
     /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;
     /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color: #E4E4E4;
+    background-color: #81BEF7;
     background-image: linear-gradient(top, #81BEF7 0%, #E4E4E4 51%);
     background-image: -webkit-linear-gradient(top, #81BEF7 0%, #E4E4E4 51%);
     background-image: -ms-linear-gradient(top, #81BEF7 0%, #E4E4E4 51%);
@@ -122,19 +122,19 @@ h1 {
     -webkit-animation: fade 3000ms infinite;
 }
 
-#bt1{
+#bt_inserir{
     margin-top:20px;
 }
 
-#bt5, #bt9{
+#bt_voltar, #bt_compra{
     margin-top:20px;
     margin-bottom:10px;
 }
 
-#bt2, #bt3,  #bt6 { 
+#bt_listar, #bt_carrinho,  #bt_dev { 
     margin-top: 1px;
 }
 
-#bt4{
+#bt_InsProd{
     margin-top:15px;
 }

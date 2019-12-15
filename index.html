@@ -2,75 +2,93 @@
 <html>
 
 <head>
+
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="msapplication-tap-highlight" content="no" />
-    <meta name="viewport"
-        content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+
+    <!--------------------- REFERÊNCIAS DO CSS ------------------------>
     <link rel="stylesheet" type="text/css" href="css/index.css" />
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-    <title>HDMI's</title>
+    <!----------------------------------------------------------------->
+
+    <title>Casa do HDMI</title>
+
 </head>
 
 <body>
+
+    <!--------------------- SCRIPTS ---------------------------->
     <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/estoque.js"></script>
+    <!---------------------------------------------------------->
 
-    <!-- Div para exibir a logo em todas as telas-->
+    <!-------------------------------------- Div para exibir a logo em todas as telas --------------------------------------------------->
     <div class="container" align="center">
         <img src="img/logo.png" width=40% height=30%>
 
+        <!--------------------------------------------------- TELA PRINCIPAL ----------------------------------------------------->
         <div class="container" id="tela_principal" align="center">
-            <!-- Adição de um id para cada botão, estilizando-os no CSS -->
 
             <!--Exibe a tela p/ inserir produtos-->
-            <input type="button" id="bt1" class="btn btn-lg btn-primary form-control" value="Inserir Produto"
+            <input type="button" id="bt_inserir" class="btn btn-lg btn-primary form-control" value="Inserir Produto"
                 onclick="exibirTela(0)">
 
             <!--Exibe a tela de listagem de produtos-->
-            <input type="button" id="bt2" class="btn btn-lg btn-primary form-control" value="Listar Produtos"
+            <input type="button" id="bt_listar" class="btn btn-lg btn-primary form-control" value="Listar Produtos"
                 onclick="exibirTela(1)">
 
             <!--Exibe a tela do carrinho de compras-->
-            <input type="button" id="bt3" class="btn btn-lg btn-primary form-control" value="Carrinho de Compras"
+            <input type="button" id="bt_carrinho" class="btn btn-lg btn-primary form-control" value="Carrinho de Compras"
                 onclick="exibirTela(2)">
-            
+
             <!-- Exibe a tela de desenvolvedores -->    
-            <input type="button" id="bt6" class="btn btn-lg btn-primary form-control" value="Desenvolvedores"
-                onclick="exibirTela(4)">    
+            <input type="button" id="bt_dev" class="btn btn-lg btn-primary form-control" value="Desenvolvedores"
+                onclick="exibirTela(4)">
+
         </div>
 
-        <!-- Tela de cadastro de produtos -->
+        <!------------------------------------------ TELA DE CADASTRO DE PRODUTOS ------------------------------------------> 
         <div id="tela_inserir_produto" hidden>
-            <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
+
+            <input type="button" id="bt_voltar" class="btn btn-lg btn-primary form-control" value="Voltar"
                 onclick="fecharTela()">
-            <!--0 fecha a tela de cadastro de produto-->
+
             <h3>Inserir produto</h3>
+
             <div class="row">
                 <h4>Nome:</h4>
                 <input type="text" id="nome_produto">
             </div>
+
             <div class="row">
                 <h4>Quantidade em estoque:</h4>
                 <input type="text" id="qtd_estoque">
             </div>
+
             <div class="row">
                 <h4>Preço:</h4>
                 <input type="text" id="preco_produto">
             </div>
-            <input type="button" id="bt4" class="btn btn-lg btn-primary form-control" value="Inserir"
+
+            <input type="button" id="bt_InsProd" class="btn btn-lg btn-primary form-control" value="Inserir"
                 onclick="inserirProduto()">
+
         </div>
 
-        <!-- Tela de listagem de produtos -->
+        <!---------------------------------------------- TELA DE LISTAGEM DOS PRODUTOS -------------------------------------------------->
         <div id="tela_listagem_produtos" hidden>
-                <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"onclick="fecharTela()">
-                <h3>Lista de Produtos</h3>
-                <div clas="row">
-                    <div class="col-md-12">
+
+            <input type="button" id="bt_voltar" class="btn btn-lg btn-primary form-control" value="Voltar"onclick="fecharTela()">
+
+            <h3>Lista de Produtos</h3>
+
+            <div clas="row">
+                <div class="col-md-12">
+                        
                         <table class="table">
                             <thead>
                                 <tr>
@@ -82,23 +100,28 @@
                             <tbody id="produtos_listagem">
                                 <!-- Aqui será exibido a listagem -->
                             </tbody>
-                                
                         </table>
+
                     </div>
                 </div>
+
             <script>
                 listagemView();
             </script>
         </div>
         
 
-        <!-- Tela do carrinho de compras -->
+        <!-------------------------------------------- TELA DO CARRINHO DE COMPRAS -------------------------------------------->
         <div id="tela_carrinho" hidden>
-            <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
-            onclick="fecharTela()">
+
+            <input type="button" id="bt_voltar" class="btn btn-lg btn-primary form-control" value="Voltar"
+                onclick="fecharTela()">
+
             <h3>Carrinho de Compras</h3>
+
             <div clas="row">
                 <div class="col-md-12">
+
                     <table class="table">
                         <thead>
                             <tr>
@@ -111,50 +134,66 @@
                             <!-- Aqui será exibido o carrinho de compras -->
                         </tbody>
                     </table>
-                    <input type="button" id="bt5" class="btn btn-primary form-control" value="Efetuar Compra" onclick="compraRealizada()">
+
+                    <input type="button" id="bt_compra" class="btn btn-primary form-control" value="Efetuar Compra" 
+                        onclick="compraRealizada()">
+
                 </div>
             </div>
+
             <script>
                 carrinhoView();
             </script>
         </div>
 
-        <!-- tela de finalizar compra -->
+        <!------------------------------------------ TELA DE FINALIZAR COMPRAS ------------------------------------------->
         <div id="tela_qtd_produto" hidden>
-            <input type="button" id="bt5" class="btn btn-lg btn-primary form-control" value="Voltar"
-            onclick="fecharTela()">
+
+            <input type="button" id="bt_voltar" class="btn btn-lg btn-primary form-control" value="Voltar"
+                onclick="fecharTela()">
+
             <h3>Efetuar Compra</h3>
+
             <input type="hidden" id="id_deCompra"> <!-- ID recebido pelo JS na funcao prepFinalizarCompra -->
 
             <div class="row">
                 <div class="col-md-12">
                     <div id="mostrarProduto">
+
                         <h5>Nome:</h5>
                         <input type="text" id="nomeProduto" disabled><br>
+
                         <h5>Qtd em Estoque:</h5>
                         <input type="text" id="qtdProduto" disabled><br>
+
                         <h5>Preco:</h5>
                         <input type="text" id="precoProduto" disabled><br><br>
+
                         <input type="text" id="pedido" value="1"><br>
-                        <input type="button" class="btn btn-primary form-control" id="bt5" value="Comprar" onclick="comprarProduto()">
+                        <input type="button" class="btn btn-primary form-control" id="bt_compra" value="Comprar" onclick="comprarProduto()">
+
                     </div>
                 </div>
             </div>
         </div>
 
+        <!------------------------------------------ TELA DE DESENVOLVEDORES -------------------------------------------->
         <div id="tela_desenvolvedores" hidden>
-            <input type="button" id="bt9" class="btn btn-lg btn-primary form-control" value="Voltar"
+
+            <input type="button" id="bt_voltar" class="btn btn-lg btn-primary form-control" value="Voltar"
             onclick="fecharTela()">
+
             <h3>DESENVOLVEDORES</h3>
             <br>
+
             <h4>Ajax Lima</h4>
-            <img src="img/Ajax.jpeg" width=20% height=10%>
+            <img src="img/Ajax.jpeg" width=30% height=20%>
 
             <br>
             <br>
 
             <h4>Lucas Lobato</h4>
-            <img src="img/Lobato.jpeg" width=20% height=10%>
+            <img src="img/Lobato.jpeg" width=30% height=20%>
 
         </div>
     </div>

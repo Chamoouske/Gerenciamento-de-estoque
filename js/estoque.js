@@ -42,12 +42,14 @@ function exibirTela(x) {
         $("#tela_inserir_produto").show(); // Mostra a tela de insercao de produto
         return;
     }
+
     if (x == 1) {
         $("#tela_principal").hide(); // Esconde a tela princiapl
         $("#tela_listagem_produtos").show(); // Mostra a tela de listagem de produtos
         listagemView();
         return;
     }
+
     if (x == 2) {
         $("#tela_principal").hide(); // Esconde a tela princiapl
         $("#tela_carrinho").show(); // Mostra a tela do carrinho de compras
@@ -100,13 +102,14 @@ function estoque_inserirProduto_db(tx) {
     $("#preco_produto").val("");
 
     parseFloat(preco);
-    fecharTela(0);
+    fecharTela();
 }
 
 // Lista os produtos cadastrados
 function listarProdutos(tx, results) {
     $("#produtos_listagem").empty();
     var len = results.rows.length;
+    
     for (var i = 0; i < len; i++) {
         $("#produtos_listagem").append
             ("<tr class='produto_item_lista'>" +
@@ -121,7 +124,6 @@ function listarProdutos(tx, results) {
 function prepFinalizarCompra(idCompra){
     idCompra = idCompra - 1;
     $("#id_deCompra").val(idCompra); // Salva o id do item escolhida pra compra em uma variavel escondida no html
-    //alert(idCompra);
     db.transaction(efetuarCompra, errorDB, successDB);
 }
 
@@ -156,9 +158,11 @@ function comprarProdutoDB(tx){
     var nome = $("#nomeProduto").val();
     var pedido = $("#pedido").val();
     var total = $("#precoProduto").val();
+
     parseInt(idProduto);
     parseInt(pedido);
     parseFloat(total); 
+
     total *= pedido; // Calcula o montante a pagar na compra 
 
     tx.executeSql('INSERT INTO Compras (produto, qtd, valorCompra) VALUES ("' + nome + '", ' + pedido + ', ' + total + ')');
@@ -168,17 +172,21 @@ function comprarProdutoDB(tx){
     fecharTela();
 }
 
+// Prepara para ler os registros da tabela Compras
 function carrinhoView(){
     db.transaction(carrinhoCompras, errorDB, successDB);
 }
 
+// Função para exibir os produtos do carrinho
 function carrinhoCompras(tx){
     tx.executeSql('SELECT * FROM Compras', [], carrinhoComprasDB, errorDB);
 }
 
+// Lista os produtos pertencentes ao carrinho
 function carrinhoComprasDB(tx, results){
     $("#carrinho_compras").empty();
     var len = results.rows.length;
+
     for (var i = 0; i < len; i++) {
         $("#carrinho_compras").append
             ("<tr class='produto_item_lista'>" +
@@ -189,10 +197,12 @@ function carrinhoComprasDB(tx, results){
     }
 }
 
+// Faz a chamada da função que limpa o carrinho de compras no banco de dados
 function compraRealizada(){
     db.transaction(compraRealizadaDB, errorDB, successDB);
 }
 
+// Exclui da tabela compras os produtos comprados
 function compraRealizadaDB(tx){
     tx.executeSql('DELETE FROM Compras');
     alert("Obrigado por comprar conosco!");
