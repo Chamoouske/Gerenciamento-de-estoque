@@ -56,23 +56,25 @@
 
             <h3>Inserir produto</h3>
 
-            <div class="row">
+            <div class="col-md-12">
                 <h4>Nome:</h4>
                 <input type="text" id="nome_produto">
             </div>
 
-            <div class="row">
+            <div class="col-md-12">
                 <h4>Quantidade em estoque:</h4>
                 <input type="number" id="qtd_estoque">
             </div>
 
-            <div class="row">
+            <div class="col-md-12">
                 <h4>Preço:</h4>
                 <input type="number" id="preco_produto">
             </div>
 
-            <input type="button" id="bt_InsProd" class="btn btn-lg btn-primary form-control" value="Inserir"
+            <div class="col-md-12">
+                <input type="button" id="bt_InsProd" class="btn btn-primary form-control" value="Inserir"
                 onclick="inserirProduto()">
+            </div>    
 
         </div>
 
@@ -131,7 +133,7 @@
                         </tbody>
                     </table>
 
-                    <input type="button" id="bt5" class="btn btn-primary form-control" value="Efetuar Compra"
+                    <input type="button" id="bt_compra" class="btn btn-primary form-control" value="Efetuar Compra"
                         onclick="compraRealizada()">
 
                 </div>
